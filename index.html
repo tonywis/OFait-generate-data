@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Generator Datas</title>
+	<script type="text/javascript" src="js/datas.js" ></script>
+	<script type="text/javascript" src="node_modules/angular/angular.js" /></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</head>
+<body ng-app="GeneratorData">
+	<div ng-controller="AppController as app">
+	<button ng-click="app.clear()">Reset</button>
+		<form novalidate ng-submit="app.addAccount()">
+			<label>Account : <input type="text" ng-model="app.account.name" ></label> <input type="submit" value="Ajouter" />
+		</form><br />
+		<form novalidate ng-submit="app.addCategory()">
+			<label>Category : <input type="text" ng-model="app.category.name" ></label> <input type="submit" value="Ajouter" />
+		</form><br />
+		<form novalidate ng-submit="app.addContent()">
+			<label>Content :<br /><textarea rows="10" cols="50" ng-model="app.contentText.value"></textarea></label><br /><input type="submit" value="Ajouter" />
+		</form>
+		<br /><br />
+
+		<div ng-repeat="(key, content) in app.contentsList track by content._id">
+
+			Account vote : <select ng-model="app.account.items[key].selected" ng-change="app.setAccountVoteForContent(content, key)">
+				<option ng-repeat="(key_opt, value_opt) in app.accountsList" value="{{key_opt}}">{{ value_opt.name }}</option>
+			</select>
+
+			<label>Vote good : <input ng-model="checkbox.vote" ng-checked="app.getCheckedVote(content)" type="checkbox" ng-change="app.toggleVoteForContent(content, key)"></label>
+
+			Category : <select ng-model="app.category.items[key].selected" ng-change="app.setCategoryForContent(content, key)">
+				<option ng-repeat="(key_opt, value_opt) in app.categoriesList" value="{{key_opt}}">{{ value_opt.name }}</option>
+			</select>
+
+			<label>Content : <input type="text" ng-model="content.value" size="50"></label>
+
+		</div>
+
+<br /><br />
+		<div>
+			Accounts :<br />
+			<textarea rows="10" cols="50">{{ app.accountsList }}</textarea>
+			<br />
+			Categories :<br />
+			<textarea rows="10" cols="50">{{ app.categoriesList }}</textarea>
+			<br />
+			Contents :<br />
+			<textarea rows="10" cols="50">{{ app.contentsList }}</textarea>
+			<br />
+			votes :<br />
+			<textarea rows="10" cols="50">{{ app.votesList }}</textarea>
+		</div>
+
+	</div>
+</body>
+</html>
