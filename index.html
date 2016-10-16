@@ -12,9 +12,9 @@
 		<form novalidate ng-submit="app.addAccount()">
 			<label>Account : <input type="text" ng-model="app.account.name" ></label> <input type="submit" value="Ajouter" />
 		</form><br />
-		<form novalidate ng-submit="app.addCategory()">
+		<!--<form novalidate ng-submit="app.addCategory()">
 			<label>Category : <input type="text" ng-model="app.category.name" ></label> <input type="submit" value="Ajouter" />
-		</form><br />
+		</form><br />-->
 		<form novalidate ng-submit="app.addContent()">
 			<label>Content :<br /><textarea rows="10" cols="50" ng-model="app.contentText.value"></textarea></label><br /><input type="submit" value="Ajouter" />
 		</form>
@@ -28,22 +28,25 @@
 
 			<label>Vote good : <input ng-model="checkbox.vote" ng-checked="app.getCheckedVote(content)" type="checkbox" ng-change="app.toggleVoteForContent(content, key)"></label>
 
-			Category : <select ng-model="app.category.items[key].selected" ng-change="app.setCategoryForContent(content, key)">
+			<!--Category : <select ng-model="app.category.items[key].selected" ng-change="app.setCategoryForContent(content, key)">
 				<option ng-repeat="(key_opt, value_opt) in app.categoriesList" value="{{key_opt}}">{{ value_opt.name }}</option>
-			</select>
+			</select>-->
 
 			<label>Content : <input type="text" ng-model="content.value" size="50"></label>
 
 		</div>
 
-<br /><br />
+<br />
+IMPORT : mongoimport JSON_FILE --db &lt;dbname&gt; --collection &lt;collectionname&gt; --jsonArray
+<br />
+<br />
 		<div>
 			Accounts :<br />
 			<textarea rows="10" cols="50">{{ app.accountsList }}</textarea>
 			<br />
-			Categories :<br />
+			<!--Categories :<br />
 			<textarea rows="10" cols="50">{{ app.categoriesList }}</textarea>
-			<br />
+			<br />-->
 			Contents :<br />
 			<textarea rows="10" cols="50">{{ app.contentsList }}</textarea>
 			<br />

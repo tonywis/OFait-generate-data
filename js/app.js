@@ -8,7 +8,7 @@ app.controller('AppController', function(){
 	appController.contentsList = datas.contentsList;
 	appController.votesList = datas.votesList;
 	appController.account = { name: "", items: [] };
-	appController.category = { name: "", items: [] };
+	//appController.category = { name: "", items: [] };
 	appController.contentText = { value: "" };
 
 	appController.getNextId = function(list) {
@@ -26,14 +26,15 @@ app.controller('AppController', function(){
 				_id: nextId,
 				name: appController.account.name,
 				mail: appController.account.name+"@gmail.com",
-				token: "tfljnfalknal"
+				token: "tfljnfalknal",
+				pseudo: "PS"+appController.account.name
 			};
 			appController.accountsList.push(acc);
 			appController.account.name = "";
 		}
 	}
 
-	appController.addCategory = function() {
+	/*appController.addCategory = function() {
 		if(appController.category.name.length > 0) {
 			console.log(appController.category.name);
 			var nextId = appController.getNextId(appController.categoriesList);
@@ -41,7 +42,7 @@ app.controller('AppController', function(){
 			appController.categoriesList.push(category);
 			appController.category.name = "";
 		}
-	}
+	}*/
 
 	appController.addContent = function() {
 		if(appController.contentText.value.length > 0) {
@@ -70,8 +71,8 @@ app.controller('AppController', function(){
 		appController.votesList = datas.votesList;
 		appController.account.name = "";
 		appController.account.items = [];
-		appController.category.name = "";
-		appController.category.items = [];
+		//appController.category.name = "";
+		//appController.category.items = [];
 		appController.contentText.value = "";
 	}
 
@@ -126,6 +127,7 @@ app.controller('AppController', function(){
 			vote = {
 				account_id: acc._id,
 				content_id: content._id,
+				created_date: new Date(),
 				value: 0
 			}
 			appController.votesList.push(vote);
@@ -135,10 +137,10 @@ app.controller('AppController', function(){
 		}
 	}
 
-		appController.setCategoryForContent = function(content, keyItem) {
+	/*	appController.setCategoryForContent = function(content, keyItem) {
 		var cat = appController.categoriesList[appController.category.items[keyItem].selected];
 		content.category_id = cat._id;
-	}
+	}*/
 
 	appController.toggleVoteForContent = function(content, keyItem) {
 		if(appController.account.items[keyItem]) {
